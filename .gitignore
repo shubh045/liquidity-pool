@@ -1,11 +1,10 @@
 node_modules
-
-node_modules
 .env
+.next
 
 # Hardhat files
 /cache
-/artifacts
+artifacts
 
 # TypeChain files
 /typechain
