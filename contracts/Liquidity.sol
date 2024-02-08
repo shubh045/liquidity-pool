@@ -52,13 +52,4 @@ contract LiquidityPool{
     function getBalance() external view returns(uint){
         return RBNT.balanceOf(msg.sender);
     }
-
-    function _approves(uint _amount0, uint _amount1) external {
-        RBNT.approve(address(this), _amount0);
-        SHUBH.approve(address(this), _amount1);
-    }
-
-    function _approves1(uint _amount) external {
-        RBNT.approve(address(this), _amount);
-    }
 }
