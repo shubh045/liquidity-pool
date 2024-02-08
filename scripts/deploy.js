@@ -7,10 +7,10 @@
 const hre = require("hardhat");
 
 async function main() {
-  //"0x2A565fa20CB8e932D5355e31b7aCe7916F684207"
+  //"0x3f51F969D2A72A2Da9C4D80337cB863da0dEd218",
   // const signer = await hre.ethers.getSigners();
   const liquidity = await hre.ethers.deployContract("LiquidityPool",
-    ["0x3f51F969D2A72A2Da9C4D80337cB863da0dEd218","0x981A113dFB1985A0b209b84f0317a78fa467bEB2"]
+    ["0x29bE3995cf26De8457Ef502785744440a9614C40","0xFc36403DD30f7d96565288c1e264be67062214cE"]
   );
 
   await liquidity.waitForDeployment();
