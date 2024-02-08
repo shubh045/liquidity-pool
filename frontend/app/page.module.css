@@ -1,0 +1,54 @@
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.box{
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #121212;
+  border-radius: 10px;
+}
+
+.input1, .input2{
+  height: 50px;
+  width: 80%;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: center;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #e4e3ea;
+  color: #121212;
+}
+
+.input2{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.buttondiv{
+  width: 80%;
+}
+
+.button, .liqbtn{
+  width: 90px;
+  height: 35px;
+  background-color: #0053a5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.liqbtn{
+  background-color: #086a94df;
+  margin-left: 10px;
+  width: 100px;
+}
