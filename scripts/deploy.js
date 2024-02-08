@@ -7,12 +7,14 @@
 const hre = require("hardhat");
 
 async function main() {
+  //"0x2A565fa20CB8e932D5355e31b7aCe7916F684207"
+  // const signer = await hre.ethers.getSigners();
   const liquidity = await hre.ethers.deployContract("LiquidityPool",
-    ["0xd8b934580fcE35a11B58C6D73aDeE468a2833fa8","0xd9145CCE52D386f254917e481eB44e9943F39138"]
+    ["0x3f51F969D2A72A2Da9C4D80337cB863da0dEd218","0x981A113dFB1985A0b209b84f0317a78fa467bEB2"]
   );
 
   await liquidity.waitForDeployment();
-  console.log("Contract deployed at address: ", await liquidity.getAddress());
+  console.log("Liquidity contract deployed at address: ", await liquidity.getAddress());
 }
 
 // We recommend this pattern to be able to use async/await everywhere
