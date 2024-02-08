@@ -20,7 +20,8 @@ contract LiquidityPool{
     }
 
     function exchange(uint _amount) external returns(uint amountOut){
-        require(_amount <= RBNT.balanceOf(msg.sender), "Insufficient balance");
+        require(_amount > 0 && _amount <= RBNT.balanceOf(msg.sender), "Insufficient balance");
+        // RBNT.approve(address(this), _amount);
         RBNT.transferFrom(msg.sender, address(this), _amount);
 
         uint amountInWithFee = (_amount * 997) / 1000;
@@ -36,6 +37,8 @@ contract LiquidityPool{
     }
 
     function addLiquidity(uint _amount0, uint _amount1) external {
+        // RBNT.approve(address(this), _amount0);
+        // SHUBH.approve(address(this), _amount1);
         RBNT.transferFrom(msg.sender, address(this), _amount0);
         SHUBH.transferFrom(msg.sender, address(this), _amount1);
         _updateReserve(RBNT.balanceOf(address(this)), SHUBH.balanceOf(address(this)));
@@ -48,5 +51,14 @@ contract LiquidityPool{
 
     function getBalance() external view returns(uint){
         return RBNT.balanceOf(msg.sender);
+    }
+
+    function _approves(uint _amount0, uint _amount1) external {
+        RBNT.approve(address(this), _amount0);
+        SHUBH.approve(address(this), _amount1);
+    }
+
+    function _approves1(uint _amount) external {
+        RBNT.approve(address(this), _amount);
     }
 }
