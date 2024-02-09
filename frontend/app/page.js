@@ -19,7 +19,9 @@ export default function Home() {
   const [provider, setProvider] = useState(null);
   const [reserve, setReserve] = useState({ reserve0: 0, reserve1: 0 });
   const [loading, setLoading] = useState(false);
-  const contractAddress = "0xed6A230eB12C10301679bFA6CF6DF676dAcc732C";
+  const contractAddress = "0x1337575d45135779f8926047319f2ebdCD3461d7";
+  const RBNTAddress = "0x29bE3995cf26De8457Ef502785744440a9614C40";
+  const SHUBHAddress = "0xFc36403DD30f7d96565288c1e264be67062214cE";
 
   useEffect(() => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -31,8 +33,6 @@ export default function Home() {
         setAccount(address);
 
         // const contractAddress = "0xcC680Ce60E640F8BEF955AC5fDe00F4700DC97D3";
-        const RBNTAddress = "0x29bE3995cf26De8457Ef502785744440a9614C40";
-        const SHUBHAddress = "0xFc36403DD30f7d96565288c1e264be67062214cE";
         const contract = new ethers.Contract(
           contractAddress,
           LiquidityPool.abi,
@@ -83,11 +83,6 @@ export default function Home() {
     await RBNTContract.approve(contractAddress, amount);
     await SHUBHContract.approve(contractAddress, amount);
     await contract.addLiquidity(amount, amount);
-
-    const reserve0 = await contract.reserveRBNT();
-    const reserve1 = await contract.reserveSHUBH();
-
-    setReserve((prev) => ({ ...prev, reserve0: reserve0, reserve1: reserve1 }));
   };
 
   const handleRBNTChange = async (e) => {
@@ -116,6 +111,14 @@ export default function Home() {
       const swapping = await contract.exchange(amount);
       await swapping.wait();
       alert("Swap complete");
+      const reserve0 = await contract.reserveRBNT();
+      const reserve1 = await contract.reserveSHUBH();
+
+      setReserve((prev) => ({
+        ...prev,
+        reserve0: reserve0,
+        reserve1: reserve1,
+      }));
     } catch (error) {
       alert(error.message);
     }
