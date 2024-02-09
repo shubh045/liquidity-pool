@@ -8,6 +8,10 @@ import Link from "next/link";
 import Form from "./components/Form";
 import styles from "./page.module.css";
 
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+
 export default function Home() {
   // const [RBNT, setRBNT] = useState("");
   // const [SHUBH, setSHUBH] = useState("");
@@ -108,9 +112,10 @@ export default function Home() {
     try {
       const approval = await RBNTContract.approve(contractAddress, amount);
       await approval.wait();
+      toast("Approved");
       const swapping = await contract.exchange(amount);
       await swapping.wait();
-      alert("Swap complete");
+      toast("Swap Complete");
       const reserve0 = await contract.reserveRBNT();
       const reserve1 = await contract.reserveSHUBH();
 
@@ -120,7 +125,8 @@ export default function Home() {
         reserve1: reserve1,
       }));
     } catch (error) {
-      alert(error.message);
+      const errorMessage = error.message.split('(')[0];
+      toast(errorMessage);
     }
     setLoading(false);
     setToken((prev) => ({ ...prev, RBNT: "", SHUBH: "" }));
@@ -129,6 +135,7 @@ export default function Home() {
   return (
     <>
       {/* <Link href={{pathname: '/add-liquidity', query: {contract: contract}}}>Add liquidity</Link> */}
+      
       <div className={styles.head}>
         <h2 className={styles.heading}>SHUBHSWAP</h2>
       </div>
@@ -139,6 +146,7 @@ export default function Home() {
         val="Swap"
         loading={loading}
       />
+      <ToastContainer />
     </>
   );
 }
