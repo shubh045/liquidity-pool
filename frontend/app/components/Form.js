@@ -1,6 +1,6 @@
 import styles from "../page.module.css";
 
-const Form = ({token, onChange, onClick, val}) => {
+const Form = ({token, onChange, onClick, val, loading}) => {
   return (
     <main className={styles.main}>
       <div className={styles.box}>
@@ -20,7 +20,10 @@ const Form = ({token, onChange, onClick, val}) => {
             readOnly
           />
           <div>
-            <button className={styles.button} onClick={token.RBNT && onClick}>{val}</button>
+            <button className={styles.button} onClick={token.RBNT && onClick}>
+            {!loading && val}
+            {loading && <p className={styles.spinner}></p>}
+            </button>
           </div>
         </div>
       </div>

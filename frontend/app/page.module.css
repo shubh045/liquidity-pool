@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #121212;
+  background-color: #424769;
   border-radius: 10px;
 }
 
@@ -25,7 +25,7 @@
   outline: none;
   border: none;
   border-radius: 5px;
-  background-color: #e4e3ea;
+  background-color: #e5e5e5;
   color: #121212;
 }
 
@@ -41,14 +41,66 @@
 .button, .liqbtn{
   width: 90px;
   height: 35px;
-  background-color: #0053a5;
+  background-color: #dc843d;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .liqbtn{
   background-color: #086a94df;
   margin-left: 10px;
   width: 100px;
+}
+
+.head{
+  width: 100%;
+  height: 50px;
+  background-color: #7077A1;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  position: fixed;
+}
+
+.heading{
+  letter-spacing: 2px;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+.spinner {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #E8C872;
+  border-bottom-color: #424769;
+  border-radius: 50%;
+  content: "";
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
 }

@@ -6,6 +6,7 @@ import LiquidityPool from "./artifacts/contracts/Liquidity.sol/LiquidityPool.jso
 import ERC20 from "./artifacts/contracts/ERC20.sol/ERC_20.json";
 import Link from "next/link";
 import Form from "./components/Form";
+import styles from "./page.module.css";
 
 export default function Home() {
   // const [RBNT, setRBNT] = useState("");
@@ -17,6 +18,7 @@ export default function Home() {
   const [SHUBHContract, setSHUBHContract] = useState(null);
   const [provider, setProvider] = useState(null);
   const [reserve, setReserve] = useState({ reserve0: 0, reserve1: 0 });
+  const [loading, setLoading] = useState(false);
   const contractAddress = "0xed6A230eB12C10301679bFA6CF6DF676dAcc732C";
 
   useEffect(() => {
@@ -78,14 +80,8 @@ export default function Home() {
 
   const addLiquidity = async (amount) => {
     // const amount = ethers.utils.parseEther("0.01")
-    await RBNTContract.approve(
-      contractAddress,
-      amount
-    );
-    await SHUBHContract.approve(
-      contractAddress,
-      amount
-    );
+    await RBNTContract.approve(contractAddress, amount);
+    await SHUBHContract.approve(contractAddress, amount);
     await contract.addLiquidity(amount, amount);
 
     const reserve0 = await contract.reserveRBNT();
@@ -112,23 +108,33 @@ export default function Home() {
     // await contract.RBNT.approve(contract, token.RBNT);
     // const sep_provider = new ethers.providers.JsonRpcProvider(process.env.SEPOLIA_TESTNET_RPC_URL);
     // console.log(contract);
-    const amount = token.RBNT * 100
-    const approval = await RBNTContract.approve(
-      contractAddress,
-      amount
-    );
-    await approval.wait();
-    await contract.exchange(amount);
+    const amount = token.RBNT * 100;
+    setLoading(true);
+    try {
+      const approval = await RBNTContract.approve(contractAddress, amount);
+      await approval.wait();
+      const swapping = await contract.exchange(amount);
+      await swapping.wait();
+      alert("Swap complete");
+    } catch (error) {
+      alert(error.message);
+    }
+    setLoading(false);
+    setToken((prev) => ({ ...prev, RBNT: "", SHUBH: "" }));
   };
 
   return (
     <>
       {/* <Link href={{pathname: '/add-liquidity', query: {contract: contract}}}>Add liquidity</Link> */}
+      <div className={styles.head}>
+        <h2 className={styles.heading}>SHUBHSWAP</h2>
+      </div>
       <Form
         token={token}
         onChange={handleRBNTChange}
         onClick={swap}
         val="Swap"
+        loading={loading}
       />
     </>
   );
