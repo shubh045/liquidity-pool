@@ -16,6 +16,7 @@
     "react-toastify": "^10.0.4"
   },
   "devDependencies": {
+    "@types/node": "^20.11.24",
     "@types/react": "18.2.61",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
