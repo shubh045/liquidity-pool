@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import LiquidityPool from "./artifacts/contracts/Liquidity.sol/LiquidityPool.json";
 import ERC20 from "./artifacts/contracts/ERC20.sol/ERC_20.json";
-import Link from "next/link";
 import Form from "./components/Form";
 import styles from "./page.module.css";
 
@@ -146,7 +145,7 @@ export default function Home() {
         val="Swap"
         loading={loading}
       />
-      <ToastContainer />
+      <ToastContainer position="top-left" />
     </>
   );
 }

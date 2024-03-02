@@ -1,10 +1,12 @@
 node_modules
 .env
 .next
+.vscode
+frontend/app/add-liquidity
 
 # Hardhat files
 /cache
-artifacts
+/artifacts
 
 # TypeChain files
 /typechain
