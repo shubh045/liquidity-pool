@@ -1,6 +1,21 @@
+import React from "react";
 import styles from "../page.module.css";
 
-const Form = ({token, onChange, onClick, val, loading}) => {
+interface Tokens {
+  RBNT: string;
+  SHUBH: string;
+}
+
+interface FormProps {
+  token: Tokens;
+  onChange(e: React.ChangeEvent<HTMLInputElement>): Promise<void>;
+  onClick(): Promise<void>;
+  val: string;
+  loading: boolean;
+}
+
+const Form = ({ token, onChange, onClick, val, loading }: FormProps) => {
+  console.log(token)
   return (
     <main className={styles.main}>
       <div className={styles.box}>
@@ -20,15 +35,18 @@ const Form = ({token, onChange, onClick, val, loading}) => {
             readOnly
           />
           <div>
-            <button className={styles.button} onClick={token.RBNT && onClick}>
-            {!loading && val}
-            {loading && <p className={styles.spinner}></p>}
+            <button
+              className={styles.button}
+              onClick={token.RBNT ? onClick : undefined}
+            >
+              {!loading && val}
+              {loading && <p className={styles.spinner}></p>}
             </button>
           </div>
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;
