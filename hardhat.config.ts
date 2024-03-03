@@ -16,9 +16,6 @@ const config: HardhatUserConfig = {
       url: SEPOLIA_TESTNET_RPC_URL,
       accounts: [TESTNET_PRIVATE_KEY]
     }
-  },
-  paths: {
-    artifacts: "./frontend/app/artifacts"
   }
 };
 

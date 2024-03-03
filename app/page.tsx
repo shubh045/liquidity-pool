@@ -3,11 +3,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import LiquidityPool_abi from "./artifacts/contracts/Liquidity.sol/LiquidityPool.json";
-import ERC20 from "./artifacts/contracts/ERC20.sol/ERC_20.json";
+import LiquidityPool_abi from "../artifacts/contracts/Liquidity.sol/LiquidityPool.json";
+import ERC20 from "../artifacts/contracts/ERC20.sol/ERC_20.json";
 import Form from "./components/Form";
 import styles from "./page.module.css";
-import { ERC_20, LiquidityPool } from "../../typechain-types";
+import { ERC_20, LiquidityPool } from "../typechain-types";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
