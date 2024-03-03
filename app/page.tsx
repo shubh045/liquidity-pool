@@ -22,7 +22,7 @@ interface Reserves {
   reserve1: number;
 }
 
-type Provider = ethers.providers.Web3Provider | null;
+type Provider = ethers.BrowserProvider | null;
 
 export default function Home() {
   // const [RBNT, setRBNT] = useState("");
@@ -43,13 +43,13 @@ export default function Home() {
   const SHUBHAddress: string = "0xFc36403DD30f7d96565288c1e264be67062214cE";
 
   useEffect(() => {
-    const provider: Provider = new ethers.providers.Web3Provider(
+    const provider: Provider = new ethers.BrowserProvider(
       window.ethereum
     );
     const wallet = async (): Promise<void> => {
       if (provider) {
         await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
+        const signer = await provider.getSigner();
         const address: string = await signer.getAddress();
         setAccount(address);
 
