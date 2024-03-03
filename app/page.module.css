@@ -52,6 +52,10 @@
   position: relative;
 }
 
+.button:disabled{
+  cursor: not-allowed;
+}
+
 .liqbtn{
   background-color: #086a94df;
   margin-left: 10px;

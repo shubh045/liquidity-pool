@@ -38,6 +38,7 @@ const Form = ({ token, onChange, onClick, val, loading }: FormProps) => {
             <button
               className={styles.button}
               onClick={token.RBNT ? onClick : undefined}
+              disabled={loading}
             >
               {!loading && val}
               {loading && <p className={styles.spinner}></p>}
